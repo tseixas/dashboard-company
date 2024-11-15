@@ -2,9 +2,21 @@ import { NestFactory } from '@nestjs/core';
 import { SwaggerModule, DocumentBuilder } from '@nestjs/swagger';
 import { AppModule } from './app.module';
 import { BadRequestException, ValidationPipe } from '@nestjs/common';
+import { DatabaseSeeder } from 'seeders/database-initial.seeder';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
+
+  const databaseSeeder = app.get(DatabaseSeeder);
+  await databaseSeeder.seed();
+
+  const args = process.argv;
+
+  if (args.includes('--seed')) {
+    const databaseSeeder = app.get(DatabaseSeeder);
+    await databaseSeeder.seed();
+    process.exit(0);
+  }
 
   app.useGlobalPipes(
     new ValidationPipe({

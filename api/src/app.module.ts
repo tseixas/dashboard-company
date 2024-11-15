@@ -6,6 +6,7 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { ContractModule } from './contract/contract.module';
 import { AuthModule } from './auth/auth.module';
 import { UsersModule } from './users/users.module';
+import { DatabaseSeeder } from 'seeders/database-initial.seeder';
 
 @Module({
   imports: [
@@ -26,6 +27,6 @@ import { UsersModule } from './users/users.module';
     UsersModule,
   ],
   controllers: [AppController],
-  providers: [AppService],
+  providers: [AppService, DatabaseSeeder],
 })
 export class AppModule {}
