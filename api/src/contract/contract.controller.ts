@@ -12,6 +12,7 @@ import {
 import { AuthGuard } from 'src/auth/auth.guard';
 import { ContractService } from './contract.service';
 import { CreateContractDto } from './dto/create-contract.dto';
+import { ApiBody } from '@nestjs/swagger';
 
 @Controller('contract')
 @UseGuards(AuthGuard)
@@ -19,6 +20,17 @@ export class ContractController {
   constructor(private readonly contractService: ContractService) {}
 
   @Post()
+  @ApiBody({
+    schema: {
+      type: 'object',
+      properties: {
+        dateEffective: { type: 'date', example: '2024-01-01 00:00:00' },
+        dateSignature: { type: 'date', example: '2024-01-01 00:00:00' },
+        fee: { type: 'string', example: '10' },
+      },
+      required: ['name', 'email'], // Campos obrigatórios
+    },
+  })
   create(@Body() createCompanyDto: CreateContractDto) {
     return this.contractService.create(createCompanyDto);
   }
