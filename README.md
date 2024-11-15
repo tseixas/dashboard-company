@@ -16,7 +16,7 @@ Aplicação para cadastro de empresas e contatos com visualização de informaç
 Clonar o repositório: ```git clone git@github.com:tseixas/dashboard-company.git```
 
 ### Backend
-- Rodar o seguinte comando na raiz do projeto ```docker compose up```
+- Rodar o seguinte comando na raiz do projeto ```docker compose up --build```
   Com esse comando será possível subir o backend, banco de dados e ter dados iniciais no banco.
 - Acesse o link: http://localhost:8000/api do Swagger da API.
 - Dados de Login: 

@@ -25,14 +25,33 @@ services:
       - DATABASE_NAME=${DATABASE_NAME}
     build:
       context: .
-      dockerfile: Dockerfile
+      dockerfile: docker/api.Dockerfile
     ports:
-      - '3000:3000'
+      - '8000:8000'
     depends_on:
       - db    
     volumes:
       - "./api/src:/home/node/api/src"
       - "./api/public:/home/node/api/public"
+
+  # web:
+  #   container_name: dashboard-company-web
+  #   image: dashboard-company-web
+  #   environment:
+  #     - JWT_SECRET=${JWT_SECRET}
+  #     - NODE_ENV=${NODE_ENV}
+  #     - REACT_APP_API_URL=${REACT_APP_API_URL}
+  #     - REACT_APP_TOKEN=${REACT_APP_TOKEN}
+  #   build:
+  #     context: .
+  #     dockerfile: ./docker/web.Dockerfile
+  #   volumes:
+  #     - .:/web
+  #     - /web/node_modules
+  #   ports:
+  #     - 3001:3001
+  #   depends_on:
+  #     - api
 
 volumes:
   pg-data:
