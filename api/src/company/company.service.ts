@@ -1,4 +1,9 @@
-import { Injectable, InternalServerErrorException } from '@nestjs/common';
+import {
+  HttpException,
+  HttpStatus,
+  Injectable,
+  InternalServerErrorException,
+} from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { Company } from 'src/company/company.entity';
@@ -29,7 +34,18 @@ export class CompanyService {
     return result;
   }
 
-  remove(id: number) {
-    return this.companyRepository.delete(id);
+  public async findOne(id: number) {
+    const company = await this.companyRepository.findOne({ where: { id } });
+
+    if (!company) {
+      throw new HttpException(
+        {
+          message: 'Não encontrado',
+        },
+        HttpStatus.NOT_FOUND,
+      );
+    }
+
+    return company;
   }
 }
