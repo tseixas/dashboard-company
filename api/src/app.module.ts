@@ -12,11 +12,11 @@ import { DatabaseSeeder } from 'seeders/database-initial.seeder';
   imports: [
     TypeOrmModule.forRoot({
       type: 'postgres',
-      host: 'localhost',
+      host: 'db',
       port: 5432,
       username: 'root',
       password: 'root',
-      database: 'root',
+      database: 'db',
       entities: [],
       synchronize: true,
       autoLoadEntities: true,

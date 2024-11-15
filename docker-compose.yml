@@ -31,8 +31,8 @@ services:
     depends_on:
       - db    
     volumes:
-      - "./api/src:/home/node/api/src"
-      - "./api/public:/home/node/api/public"
+      - ./api:/home/node/api
+      - /home/node/api/node_modules
 
   # web:
   #   container_name: dashboard-company-web
