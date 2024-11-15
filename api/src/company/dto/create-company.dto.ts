@@ -1,4 +1,7 @@
 import { IsNotEmpty, MinLength, MaxLength, Length } from 'class-validator';
+import { IsCNPJ } from 'src/decorators/isCNPJ.decorator';
+// import { IsImage } from 'src/decorators/isImage.decorator';
+import { IsUF } from 'src/decorators/isUf.decorator';
 
 export class CreateCompanyDto {
   id: number;
@@ -15,11 +18,11 @@ export class CreateCompanyDto {
   @IsNotEmpty({ message: 'Campo deve ser informado' })
   companyName: string;
 
-  @MaxLength(255, { message: 'Campo deve possuir no máximo 255 caracteres' })
+  @IsCNPJ({ message: 'CNPJ inválido!' })
   @IsNotEmpty({ message: 'Campo deve ser informado' })
   cnpj: string;
 
-  @MaxLength(255, { message: 'Campo deve possuir no máximo 255 caracteres' })
+  @IsUF({ message: 'UF inválida' })
   @IsNotEmpty({ message: 'Campo deve ser informado' })
   uf: string;
 
@@ -27,7 +30,7 @@ export class CreateCompanyDto {
   @IsNotEmpty({ message: 'Campo deve ser informado' })
   city: string;
 
-  @MaxLength(255, { message: 'Campo deve possuir no máximo 255 caracteres' })
-  @IsNotEmpty({ message: 'Campo deve ser informado' })
-  logo: string;
+  // @IsImage({ message: 'A imagem deve ser um arquivo .PNG' })
+  // @IsNotEmpty({ message: 'Campo deve ser informado' })
+  // logo: any;
 }
