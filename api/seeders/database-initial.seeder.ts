@@ -16,7 +16,8 @@ export class DatabaseSeeder {
         {
           name: 'Admin',
           email: 'admin@teste.com',
-          password: '123456789',
+          password:
+            '$2b$10$xr/Gfpd8e0qbYGIrBQ3f8uW0f1le07j.xguJEPNjWCxaqSahsX9.y',
           isActive: true,
         },
       ]);
